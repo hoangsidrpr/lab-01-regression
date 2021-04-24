@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage[pdftex]{graphicx} %for embedding images
+\usepackage{url} %for proper url entries
+\usepackage[bookmarks, colorlinks=false, pdfborder={0 0 0}, pdftitle={Laboratory ML Project 01}, pdfauthor={Nhut-Nam Le}, pdfsubject={Introduction to Machine Learning}, pdfkeywords={report, exercises}]{hyperref} %for creating links in the pdf version and other additional pdf attributes, no effect on the printed document
+%\usepackage[final]{pdfpages} %for embedding another pdf, remove if not required
+\usepackage[utf8]{vietnam}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{pythonhighlight}
+\usepackage[left=3cm, right=3cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{parskip}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage[]{algorithm2e}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\newcommand\T{\rule{0pt}{2.6ex}}       % Top strut
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}} % Bottom strut
+
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+\setlength{\parindent}{15pt}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\lhead[<even output>]{NHẬP MÔN HỌC MÁY}
+\rhead[<even output>]{BÁO CÁO ĐỒ ÁN THỰC HÀNH 01}
+\title{research-outline}
+\author{Nhut-Nam Le}
+\date{2021}
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			% Top of the page
+			\large{\textbf{ĐẠI HỌC KHOA HỌC TỰ NHIÊN, ĐHQG-HCM\\KHOA CÔNG NGHỆ THÔNG TIN\\BỘ MÔN KHOA HỌC MÁY TÍNH}}\\
+			\includegraphics[width=0.75\textwidth]{images/khtn.png}\\
+			% Title
+			\large \textbf{NHẬP MÔN HỌC MÁY}\\[0.1in]
+			\huge \textbf{BÁO CÁO ĐỒ ÁN THỰC HÀNH}\\[0.1in]
+			\huge \textbf{REGRESSION - HỒI QUY}\\[0.1in]
+			\vfill
+			\normalsize
+			% Submitted by
+			\normalsize
+			% Lecturers
+			\textbf{Giảng viên lý thuyết}\\
+			{\textbf{TS.} Bùi Tiến Lên}\\[0.1in]
+			% Teacher Assistant
+			\textbf{Giảng viên hướng dẫn}\\
+			\vspace{0.1in}
+			{Dương Nguyễn Thái Bảo, Nguyễn Ngọc Đức, Nguyễn Tiến Huy, Lê Thanh Phong}\\[0.1in]
+			\textbf{Sinh viên thực hiện} \\
+			\vspace{0.1in}
+			% Submitted by
+			{Vương Gia Bảo, Ngô Xuân Kiên, Lê Nhựt Nam, Nguyễn Viết Dũng}\\[0.1in]
+			% Date time when written report
+			\vfill
+			Tháng 4 năm 2021
+		\end{center}
+	\end{titlepage}
+	\newpage
+	% End Title4
+	
+	\pagenumbering{roman} %numbering before main content starts
+	\cleardoublepage
+	%\pagebreak
+	
+	\newpage
+	\tableofcontents
+	\newpage
+	\pagenumbering{arabic} %reset numbering to normal for the main content
+	\setcounter{secnumdepth}{0}
+	
+	\section{Thông tin nhóm}
+	\begin{center}
+		\begin{tabular}{ | c | c | c | c |}\hline
+			STT	& MSSV & Họ tên đầy đủ & Email liên lạc \T\B\\\hline
+			1 & 18120009 & Vương Gia Bảo & 18120009@student.hcmus.edu.vn   \T\B\\ \hline
+			2 & 18120045 & Ngô Xuân Kiên & 18120045@student.hcmus.edu.vn \T\B\\ \hline
+			3 & 18120061 & Lê Nhựt Nam & 18120061@student.hcmus.edu.vn  \T\B\\ \hline
+			4 & 18120167 & Nguyễn Viết Dũng &  18120167@student.hcmus.edu.vn \T\B\\ \hline
+		\end{tabular}
+	\end{center}
+	\section{Phân công công việc}
+	\begin{center}
+		\begin{tabular}{ | l | l | l | p{3cm} | p{5cm} |}
+			\hline
+			STT & MSSV & Họ tên & Vai trò & Mức độ hoàn thành công việc  \T\B\\ \hline
+			1 & 18120009 & Vương Gia Bảo & &  \T\B\\ \hline
+			2 & 18120045 & Ngô Xuân Kiên & & \T\B \\ \hline
+			3 & 18120061 & Lê Nhựt Nam & Nhóm trưởng &  \T\B \\ \hline
+			4 & 18120167 & Nguyễn Viết Dũng &   &  \T\B \\ \hline
+		\end{tabular}
+	\end{center}
+	\section{Tiêu chí đánh giá đồ án}
+	\subsection{Bảng tiêu chí cho đồ án}
+	\begin{center}
+		\begin{tabular}{ | p{5cm} | p{6cm} | l |}\hline
+			Tên tiêu chí đồ án & Nội dung tiêu chí & Mức độ hoàn thiện  \T\B\\\hline
+			Nhận diện bài toán & Sinh viên cần tìm hiểu bài toán và dữ liệu được giao
+			nhằm xác định nội dung và ý nghĩa bài toán thực tế cần giải quyết. Thông
+			qua đó, sinh viên có khả năng ánh xạ vấn đề thực tế sang bài toán lập trình & 0\%  \T\B\\\hline
+			Giải quyết vấn đề & Sinh viên được yêu cầu đưa ra các giải pháp và hướng
+			tiếp cận nhằm giải quyết được yêu cầu bài toán thực tế & 0\%  \T\B\\\hline
+			Xử lý và phân tích dữ liệu & Sinh viên có khả năng xử lý các công cụ phân
+			tích dữ liệu tự động nhằm tìm ra các thông tin hữu ích, các đặc trưng tiềm ẩn
+			ảnh hưởng để mục tiêu bài toán &0\%  \T\B\\\hline
+			Thiết kế và cài đặt các thuật toán máy học & Sinh viên được yêu cầu có
+			khả năng đề xuất, triển khai và giải thích các thuật toán máy học nhằm giải
+			quyết bài toán được giao & 0\%  \T\B\\\hline
+		\end{tabular}
+	\end{center}
+	\subsection{Bảng yêu cầu cho đồ án}
+	\begin{center}
+		\begin{tabular}{ | p{5cm} | p{6cm} | l |}\hline	
+			Tên yêu cầu & Nội dung yêu cầu & Mức độ hoàn thiện  \T\B\\\hline
+			Phân tích dữ liệu & Đọc và phân tích các đặc trưng trong 2 tập tin được cung cấp. Trình bày các thông tin hữu ích (insights) tác động đến chi phí y tế cá nhân & 0\%  \T\B\\\hline
+			Cài đặt thuật toán & Cài đặt các thuật toán máy học đã được học để dự đoán chi phí y tế cá nhân. & 0\%  \T\B\\\hline
+			Trình bày kết quả và nhận xét & Báo cáo kết quả đạt được sau quá trình phân tích và cài đặt. Từ đó nhận xét về các tác nhân ảnh hưởng mạnh/yếu tới chi phí y tế cá nhân & 0\%  \T\B\\\hline
+		\end{tabular}
+	\end{center}	
+	\subsection{Bảng danh sách các thuật toán Hồi quy}
+	\begin{center}
+		\begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} | p{3cm} |} \hline	
+			Tên thuật toán máy học & Cách cài đặt & Thư viện để đối chiếu (Nếu có) & Đánh giá mức độ hoàn thiện\T\B\\\hline
+			Multi Linear Regression & & & 0\%  \T\B\\\hline
+			Logistic Regression & & & 0\%  \T\B\\\hline
+			Ridge Regression & & & 0\%  \T\B\\\hline
+			Lasso Regression & & & 0\%  \T\B\\\hline
+			Random Forest Regressor & & & 0\%  \T\B\\\hline
+			Polynomial Regression & & & 0\%  \T\B\\\hline
+		\end{tabular}
+	\end{center}		
+	\section{Nội dung báo cáo}
+	
+	\section{1. Đọc dữ liệu và phân tích dữ liệu}
+	
+	\subsection{1. Tổng quan dữ liệu thông qua các đại lượng thống kê cơ bản}
+	
+	\subsection{2. Các đại lượng thống kê cơ bản của đặc trưng chi phí y tế}
+	
+	\subsection{3. Phân tích mối quan hệ giữa chi phí y tế và vùng (Region)}
+	
+	\subsection{4. Phân tích mối quan hệ giữa chi phí y tế và giới tính (Sex), vùng (Region)}
+	
+	\subsection{5. Phân tích mối quan hệ giữa chi phí y tế và tình trạng hút thuốc (Smoker), vùng (Region)}
+	
+	\subsection{6. Phân tích mối quan hệ giữa chi phí y tế và  số lượng trẻ con/ người phụ thuộc (Children), vùng (Region)}
+	
+	\subsection{7. Phân tích mối quan hệ giữa chi phí y tế và tuổi (Age) và tình trạng hút thuốc (Smoker)}
+	
+	\subsection{8. Phân tích mối quan hệ giữa chi phí y tế và chỉ số BMI (bmi) và tình trạng hút thuốc (Smoker)}
+	
+	\subsection{9. Mối tương quan giữa các đặc trưng trong dữ liệu}
+	
+	\section{2. Cài đặt thuật toán Máy học}
+	
+	\subsection{1. Hồi quy Tuyến tính - Linear Regression}
+	
+	\subsection{2. Hồi quy Ridge - Ridge Regression}
+	
+	\subsection{3. Hồi quy Lasso - Lasso Regression}
+	
+	\subsection{4. Random Forest Regressor}
+	
+	\subsection{5. Polynomial Regression}
+	
+	\section{3. Các kết quả và nhận xét}
+	
+	\section{4. Tài liệu tham khảo}
+	
+\end{document}
