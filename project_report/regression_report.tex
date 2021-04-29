@@ -87,6 +87,23 @@
 	\pagenumbering{roman} %numbering before main content starts
 	\cleardoublepage
 	%\pagebreak
+	\phantomsection
+	\addcontentsline{toc}{section}{Lời cảm ơn}
+	\section*{Lời cảm ơn}
+	\vspace{1.0in}
+	\begingroup
+	\setlength{\parindent}{0pt}
+	\qquad Trong quá trình thực hiện đồ án này, chúng em đã nhận được rất nhiều sự giúp đỡ cũng như hỗ trợ từ các thầy cô Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM và các bạn bè trong lớp Nhập môn Học Máy. Chúng em xin bày tỏ lòng cảm ơn chân thành đến mọi người vì đã giúp đỡ hướng dẫn, chỉ bảo rất tận tình.
+	
+	\qquad Đặc biệt, chúng em xin bày tỏ lòng biết ơn sâu sắc đến các thầy cô khoa Công nghệ Thông tin, cụ thể hơn là thầy Bùi Tiến Lên và các thầy hướng dẫn đã giảng dạy rất nhiệt, cung cấp nhiều slides, tài nguyên học tập cần thiết, tạo điều kiện tốt nhất để chúng em có thể hoàn thành được đồ án này.
+	
+	\qquad Trong quá trình, viết báo cáo này, chúng em không thể tránh khỏi nhiều thiếu sót, hy vọng mong nhận được góp ý từ thầy để chúng em tiếp tục hoàn thiện hơn đối với đồ án này, cũng như rút kinh nghiệm cho những đồ án, những báo cáo kế tiếp.
+	
+	\vspace{1.0in}
+	\textbf{Đại học Khoa học Tự nhiên, ĐHQG-HCM.}\\
+	Vương Gia Bảo, Ngô Xuân Kiên, Lê Nhựt Nam, Nguyễn Viết Dũng\\
+	Tháng 4 năm 2021\\
+	\endgroup
 	
 	\newpage
 	\tableofcontents
@@ -96,7 +113,7 @@
 	
 	\section{Thông tin nhóm}
 	\begin{center}
-		\begin{tabular}{ | c | c | c | c |}\hline
+		\begin{tabular}{ | p{1cm} |  p{3cm} | p{5cm} | p{5cm}  |}\hline
 			STT	& MSSV & Họ tên đầy đủ & Email liên lạc \T\B\\\hline
 			1 & 18120009 & Vương Gia Bảo & 18120009@student.hcmus.edu.vn   \T\B\\ \hline
 			2 & 18120045 & Ngô Xuân Kiên & 18120045@student.hcmus.edu.vn \T\B\\ \hline
@@ -106,78 +123,230 @@
 	\end{center}
 	\section{Phân công công việc}
 	\begin{center}
-		\begin{tabular}{ | l | l | l | p{3cm} | p{5cm} |}
+		\begin{tabular}{ | l | l | l | p{5.5cm} | p{3cm} |}
 			\hline
-			STT & MSSV & Họ tên & Vai trò & Mức độ hoàn thành công việc  \T\B\\ \hline
-			1 & 18120009 & Vương Gia Bảo & &  \T\B\\ \hline
-			2 & 18120045 & Ngô Xuân Kiên & & \T\B \\ \hline
-			3 & 18120061 & Lê Nhựt Nam & Nhóm trưởng &  \T\B \\ \hline
-			4 & 18120167 & Nguyễn Viết Dũng &   &  \T\B \\ \hline
+			STT & MSSV & Họ tên & Nội dung công việc & Mức độ hoàn thành  \\ \hline
+			1 & 18120009 & Vương Gia Bảo & Thu thập dữ liệu, đọc hiểu source, báo cáo Introduction Paper &  100\%\T\B\\ \hline
+			2 & 18120045 & Ngô Xuân Kiên & Thu thập dữ liệu, đọc hiểu source, báo cáo Related Work Paper & 100\%\T\B \\ \hline
+			3 & 18120061 & Lê Nhựt Nam & Thu thập dữ liệu, đọc hiểu source, báo cáo, SincNet Architecture, Slides thuyết trình, Midterm Report & 100\%\T\B \\ \hline
+			4 & 18120167 & Nguyễn Viết Dũng &  Thu thập dữ liệu, đọc hiểu source, báo cáo experimental setup Paper & 100\%\T\B \\ \hline
 		\end{tabular}
 	\end{center}
 	\section{Tiêu chí đánh giá đồ án}
 	\subsection{Bảng tiêu chí cho đồ án}
 	\begin{center}
-		\begin{tabular}{ | p{5cm} | p{6cm} | l |}\hline
+		\begin{tabular}{ | p{5cm} | p{6.5cm} | p{3cm} |}\hline
 			Tên tiêu chí đồ án & Nội dung tiêu chí & Mức độ hoàn thiện  \T\B\\\hline
 			Nhận diện bài toán & Sinh viên cần tìm hiểu bài toán và dữ liệu được giao
 			nhằm xác định nội dung và ý nghĩa bài toán thực tế cần giải quyết. Thông
-			qua đó, sinh viên có khả năng ánh xạ vấn đề thực tế sang bài toán lập trình & 0\%  \T\B\\\hline
+			qua đó, sinh viên có khả năng ánh xạ vấn đề thực tế sang bài toán lập trình & 100\%  \T\B\\\hline
 			Giải quyết vấn đề & Sinh viên được yêu cầu đưa ra các giải pháp và hướng
-			tiếp cận nhằm giải quyết được yêu cầu bài toán thực tế & 0\%  \T\B\\\hline
+			tiếp cận nhằm giải quyết được yêu cầu bài toán thực tế & 100\%  \T\B\\\hline
 			Xử lý và phân tích dữ liệu & Sinh viên có khả năng xử lý các công cụ phân
 			tích dữ liệu tự động nhằm tìm ra các thông tin hữu ích, các đặc trưng tiềm ẩn
-			ảnh hưởng để mục tiêu bài toán &0\%  \T\B\\\hline
+			ảnh hưởng để mục tiêu bài toán &100\%  \T\B\\\hline
 			Thiết kế và cài đặt các thuật toán máy học & Sinh viên được yêu cầu có
 			khả năng đề xuất, triển khai và giải thích các thuật toán máy học nhằm giải
-			quyết bài toán được giao & 0\%  \T\B\\\hline
+			quyết bài toán được giao & 100\%  \T\B\\\hline
 		\end{tabular}
 	\end{center}
 	\subsection{Bảng yêu cầu cho đồ án}
 	\begin{center}
-		\begin{tabular}{ | p{5cm} | p{6cm} | l |}\hline	
+		\begin{tabular}{ | p{5cm} | p{6.5cm} | p{3cm} |}\hline	
 			Tên yêu cầu & Nội dung yêu cầu & Mức độ hoàn thiện  \T\B\\\hline
-			Phân tích dữ liệu & Đọc và phân tích các đặc trưng trong 2 tập tin được cung cấp. Trình bày các thông tin hữu ích (insights) tác động đến chi phí y tế cá nhân & 0\%  \T\B\\\hline
-			Cài đặt thuật toán & Cài đặt các thuật toán máy học đã được học để dự đoán chi phí y tế cá nhân. & 0\%  \T\B\\\hline
-			Trình bày kết quả và nhận xét & Báo cáo kết quả đạt được sau quá trình phân tích và cài đặt. Từ đó nhận xét về các tác nhân ảnh hưởng mạnh/yếu tới chi phí y tế cá nhân & 0\%  \T\B\\\hline
+			Phân tích dữ liệu & Đọc và phân tích các đặc trưng trong 2 tập tin được cung cấp. Trình bày các thông tin hữu ích (insights) tác động đến chi phí y tế cá nhân & 100\%  \T\B\\\hline
+			Cài đặt thuật toán & Cài đặt các thuật toán máy học đã được học để dự đoán chi phí y tế cá nhân. & 100\%  \T\B\\\hline
+			Trình bày kết quả và nhận xét & Báo cáo kết quả đạt được sau quá trình phân tích và cài đặt. Từ đó nhận xét về các tác nhân ảnh hưởng mạnh/yếu tới chi phí y tế cá nhân & 100\%  \T\B\\\hline
 		\end{tabular}
 	\end{center}	
 	\subsection{Bảng danh sách các thuật toán Hồi quy}
 	\begin{center}
 		\begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} | p{3cm} |} \hline	
-			Tên thuật toán máy học & Cách cài đặt & Thư viện để đối chiếu (Nếu có) & Đánh giá mức độ hoàn thiện\T\B\\\hline
-			Multi Linear Regression & & & 0\%  \T\B\\\hline
-			Logistic Regression & & & 0\%  \T\B\\\hline
-			Ridge Regression & & & 0\%  \T\B\\\hline
-			Lasso Regression & & & 0\%  \T\B\\\hline
-			Random Forest Regressor & & & 0\%  \T\B\\\hline
-			Polynomial Regression & & & 0\%  \T\B\\\hline
+			Thuật toán máy học & Cách cài đặt & Thư viện để đối chiếu (Nếu có) & Đánh giá hoàn thành\T\B\\\hline
+			Multi Linear Regression & & & 100\%  \T\B\\\hline
+			Logistic Regression & & & 100\%  \T\B\\\hline
+			Ridge Regression & & & 100\%  \T\B\\\hline
+			Lasso Regression & & & 100\%  \T\B\\\hline
+			Random Forest Regressor & & & 100\%  \T\B\\\hline
+			Polynomial Regression & & & 100\%  \T\B\\\hline
 		\end{tabular}
 	\end{center}		
 	\section{Nội dung báo cáo}
 	
-	\section{1. Đọc dữ liệu và phân tích dữ liệu}
+	\section{1. Đọc dữ liệu}
+	\qquad Để cho thuận tiện trong quá trình demo trên môi trường \textbf{Google Colab} nhóm chúng em sử dụng lệnh wget trên Linux, dowload trực tiếp dữ liệu từ đường dẫn mà thầy đã public trong bài lab này.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/download_data.png}
+		\caption{Download dữ liệu: train data, test data}
+		\label{fig:writing-thesis}
+	\end{figure}
+	
+	Phần import một số thư viện cần thiết cho việc nhập xuất dữ liệu, xử lý dữ liệu dạng bảng, trực quan hóa dữ liệu, thư viện cung cấp các mô hình máy học
+	
+	Phần đọc dữ liệu, sử dụng thư viện Pandas như sau
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/read_train_test.png}
+		\caption{Đọc dữ liệu}
+		\label{fig:writing-thesis}
+	\end{figure}
+	
+	\section{2. Phân tích dữ liệu}
 	
 	\subsection{1. Tổng quan dữ liệu thông qua các đại lượng thống kê cơ bản}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/train_head.png}
+		\caption{Hiển thị một phần dữ liệu huấn luyện đầu tiên}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
 	\subsection{2. Các đại lượng thống kê cơ bản của đặc trưng chi phí y tế}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/simple_stat_on_train_set.png}
+		\caption{Thống kê mô tả trên tập huấn luyện}
+		\label{fig:writing-thesis}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/simple_stat_on_test_set.png}
+		\caption{Thống kê mô tả trên tập kiểm tra}
+		\label{fig:writing-thesis}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/check_null_train_test.png}
+		\caption{Kiểm tra null values trên hai tập: tập huấn luyện, tập kiểm tra}
+		\label{fig:writing-thesis}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/data_types_train_test.png}
+		\caption{Kiểm tra kiểu dữ liệu trên hai tập: tập huấn luyện, tập kiểm tra}
+		\label{fig:writing-thesis}
+	\end{figure}
+
 	
-	\subsection{3. Phân tích mối quan hệ giữa chi phí y tế và vùng (Region)}
+	\subsection{3. Mối tương quan giữa các đặc trưng trong dữ liệu}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{images/corr_matrix_train.png}
+		\caption{Ma trận tương quan giữa các đặc trưng trong tập huấn luyện}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
-	\subsection{4. Phân tích mối quan hệ giữa chi phí y tế và giới tính (Sex), vùng (Region)}
+	\subsection{4. Phân tích đặc trưng chi phí y tế}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/medical_charges.png}
+		\caption{Thông số thống kê cơ bản về đặc trưng chi phí y tế}
+		\label{fig:writing-thesis}
+	\end{figure}
+	Trực quan phân phối của đặc trưng chi phí y tế
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/dist_medical_charges.png}
+		\caption{Dùng displot Seaborn để trực quan phân phối của đặc trưng chi phí y tế}
+		\label{fig:writing-thesis}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/dist_medical_charges_plot.png}
+		\caption{Dùng displot Seaborn để trực quan phân phối của đặc trưng chi phí y tế}
+		\label{fig:writing-thesis}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/dist_medical_charges_plot_log_scale.png}
+		\caption{Dùng displot Seaborn để trực quan phân phối của đặc trưng chi phí y tế}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
-	\subsection{5. Phân tích mối quan hệ giữa chi phí y tế và tình trạng hút thuốc (Smoker), vùng (Region)}
+	\subsection{4. Phân tích mối quan hệ giữa chi phí y tế và vùng (Region)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/bar_chart_medical_charges_region.png}
+		\caption{Chi phí y tế theo từng vùng}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
-	\subsection{6. Phân tích mối quan hệ giữa chi phí y tế và  số lượng trẻ con/ người phụ thuộc (Children), vùng (Region)}
+	\subsection{5. Phân tích mối quan hệ giữa chi phí y tế và giới tính (Sex), vùng (Region)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/bar_chart_medical_charges_region_sex.png}
+		\caption{Chi phí y tế của mỗi vùng theo giới tính}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
-	\subsection{7. Phân tích mối quan hệ giữa chi phí y tế và tuổi (Age) và tình trạng hút thuốc (Smoker)}
+	\subsection{6. Phân tích mối quan hệ giữa chi phí y tế và tình trạng hút thuốc (Smoker), vùng (Region)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/bar_chart_medical_charges_region_smoker.png}
+		\caption{Chi phí y tế của mỗi vùng theo tình trạng hút thuốc}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
-	\subsection{8. Phân tích mối quan hệ giữa chi phí y tế và chỉ số BMI (bmi) và tình trạng hút thuốc (Smoker)}
+	\subsection{7. Phân tích mối quan hệ giữa chi phí y tế và  số lượng trẻ con/ người phụ thuộc (Children), vùng (Region)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/bar_chart_medical_charges_region_children.png}
+		\caption{Chi phí y tế của mỗi vùng theo số lượng trẻ con/ người phụ thuộc}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
-	\subsection{9. Mối tương quan giữa các đặc trưng trong dữ liệu}
+	\subsection{8. Phân tích mối quan hệ giữa chi phí y tế và tuổi (Age) dựa trên tình trạng hút thuốc (Smoker)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/age_charges_by_smoker.png}
+		\caption{Quan hệ giữa Age và Charges dựa trên Smoker}
+		\label{fig:writing-thesis}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/reg_age_charges_by_smoker.png}
+		\caption{Quan hệ giữa Age và Charges dựa trên Smoker}
+		\label{fig:writing-thesis}
+	\end{figure}
+	
+	\subsection{9. Phân tích mối quan hệ giữa chi phí y tế và chỉ số BMI (bmi) dựa tình trạng hút thuốc (Smoker)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/bmi_charges_by_smoker.png}
+		\caption{Quan hệ giữa Bmi và Charges dựa trên Smoker}
+		\label{fig:writing-thesis}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/reg_bmi_charges_by_smoker.png}
+		\caption{Quan hệ giữa Bmi và Charges dựa trên Smoker}
+		\label{fig:writing-thesis}
+	\end{figure}
+	
+	\subsection{10. Phân tích mối quan hệ giữa số lượng trẻ con/ người phụ thuộc (Children) dựa tình trạng hút thuốc}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/children_charges_by_smoker.png}
+		\caption{Quan hệ giữa Children và Charges dựa trên Smoker}
+		\label{fig:writing-thesis}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\textwidth]{images/reg_children_charges_by_smoker.png}
+		\caption{Quan hệ giữa Children và Charges dựa trên Smoker}
+		\label{fig:writing-thesis}
+	\end{figure}
 	
 	\section{2. Cài đặt thuật toán Máy học}
 	
+	\subsection{Lựa chọn thuật toán Máy học}
+		
 	\subsection{1. Hồi quy Tuyến tính - Linear Regression}
 	
 	\subsection{2. Hồi quy Ridge - Ridge Regression}
@@ -190,6 +359,8 @@
 	
 	\section{3. Các kết quả và nhận xét}
 	
-	\section{4. Tài liệu tham khảo}
+	\nocite{*}
+	\bibliography{references}\newpage\cleardoublepage
+	\bibliographystyle{plain}
 	
 \end{document}
