@@ -436,7 +436,7 @@
 	\subsection{1. Lựa chọn thuật toán Máy học}
 	\qquad Vấn đề đặt ra, dựa trên những dự kiện (các biến, giả định rằng các biến này độc lập với nhau) về tuổi (age), giới tính (sex), bmi, số lượng trẻ em (children), vùng dân cư (region), ta có thể đưa ra dự đoán về giá trị của chi phí y tế cá nhân (biến phụ thuộc) một cách chính xác nhất có thể
 	
-	Đây là một bài toán có thể áp dụng Mô hình Tuyến tính và Phân tích Hồi quy
+	Trong Học có giám sát (Supervised Learning) được chia ra làm 2 dạng lớn là hồi quy (regression) và phân loại (classification) dựa trên tập dữ liệu mẫu - tập huấn luyện (training data). Đây là một bài toán có thể áp dụng Mô hình Tuyến tính và Phân tích Hồi quy
 	
 	\textbf{Nhắc lại về bài toán Phân tích Hồi quy}
 	Giả sử rằng một kết quả một quá trình bất kỳ nào đó được đại diện bằng một biến ngẫu nhiên $Y$, $Y$ được gọi là biến phụ thuộc, phụ thuộc vào $k$ biến khác $X_1, X_2, ..., X_k$
@@ -448,6 +448,10 @@
 	Hàm $f$ là một hàm lý tưởng, $\beta_1, \beta_2, ..., \beta_k$ thể hiện sự đóng góp của $X_1, X_2, ..., X_k$, giá trị $\beta_0$ thể hiện sự ngẫu nhiên giữa $Y$ với $X_1, X_2, ..., X_k$
 	
 	Mô hình hay quan hệ này được gọi là tuyến tính nếu nó tuyến tính với các tham số của nó và phi tuyến nếu nó không tuyến tính với các tham số của nó. Có nghĩa là, nếu tất cả đạo hàm $y$ theo từng biến tham số $\beta_1, \beta_2, ..., \beta_k$ độc lập với các tham số thì mô hình gọi là tuyến tính.
+	
+	\textbf{Mục tiêu của Phân tích Hồi quy} Việc xác định dạng tường minh của phương trình hồi quy là mục tiêu cuối cùng của phân tích hồi quy. Cuối cùng nó là một mối quan hệ tốt và hợp lệ giữa biến nghiên cứu và biến giải thích. Một phương trình hồi quy như vậy có thể được sử dụng cho một số mục đích. 
+	
+	Ví dụ, để xác định vai trò của bất kỳ biến giải thích nào trong mối quan hệ chung trong bất kỳ xây dựng chính sách nào, để dự báo các giá trị của biến phản hồi cho một tập hợp các giá trị nhất định của các biến giải thích. Phương trình hồi quy giúp hiểu được mối quan hệ qua lại của các biến giữa chúng.
 	
 	\textbf{Các bước thực hiện của Phân tích Hồi quy}
 	\begin{itemize}
@@ -461,26 +465,531 @@
 		\item Sử dụng (các) mô hình đã chọn cho giải pháp của vấn đề đã đặt ra.
 	\end{itemize}
 
-	\textbf{Mục tiêu của Phân tích Hồi quy} Việc xác định dạng tường minh của phương trình hồi quy là mục tiêu cuối cùng của phân tích hồi quy. Cuối cùng nó là một mối quan hệ tốt và hợp lệ giữa biến nghiên cứu và biến giải thích. Một phương trình hồi quy như vậy có thể được sử dụng cho một số mục đích. 
+	\textbf{Đánh giá Phân tích Hồi quy}
+	Các độ đo sử dụng trong việc đánh giá các mô hình Hồi quy trong bài lab
+	\begin{itemize}
+		\item Độ đo Mean Absolute Error được tính theo công thức:
+		$$\text{MAE} = \frac{\sum_{i=1}^n|y_i-x_i|}{n}$$
+		Độ đo này thường được sử dụng để đánh giá sự sai khác giữa mô hình dự đoán và tập dữ liệu kiểm tra trong các bài toán hồi quy. Chỉ số này càng nhỏ thì mô hình học máy càng chính xác.
+		\item Mean squared error - MSE hay được biết là phép ước lượng trung bình của bình phương của sai số. MSE là moment bậc hai (về nguồn gốc) của sai số là moment bậc hai (về nguồn gốc) của sai số
+		$$MSE = \frac{1}{n}\sum_{i=1}^{n}(Y_i - \hat{Y})^2$$
+		\item Căn bậc 2 của trung bình bình phương sai số
+		$$RMSE = \sqrt[2]{\frac{1}{n}\sum_{i=1}^{n}(Y_i - \hat{Y})^2}$$
+		\item R2 (R Squared)
+		$$R^2 = \frac{MSS}{TSS} = 1 - \frac{ESS}{TSS} = \frac{\sum(Y_i - \overline{Y})^2}{\sum(\hat{Y} - \overline{Y})^2} = 1 - \frac{\sum(Y_i - \hat{Y})^2}{\sum(\hat{Y} - \overline{Y})^2}$$
+	\end{itemize}
 	
-	Ví dụ, để xác định vai trò của bất kỳ biến giải thích nào trong mối quan hệ chung trong bất kỳ xây dựng chính sách nào, để dự báo các giá trị của biến phản hồi cho một tập hợp các giá trị nhất định của các biến giải thích. Phương trình hồi quy giúp hiểu được mối quan hệ qua lại của các biến giữa chúng.
 	
 	\subsection{2. Hồi quy Tuyến tính - Linear Regression}
-	\subsubsection{Hồi quy tuyến tính cơ bản}
 	\subsubsection{Sklearn Hồi quy tuyến tính}
+	\qquad Thông qua những dữ liệu, thuật toán và mô hình máy học đã được học, ta hy vọng sẽ đưa ra giá trị dự đoán về một quá trình nào đó một cách chính xác nhất (tương ứng với những biến mới). Thông thường những biến giá trị này có tính liên tục
 	
+	Tùy theo số lượng biến mà mô hình có hình dạng khác nhau
+	\begin{itemize}
+		\item Với số lượng biến $r = 1$, mô hình sẽ có dạng một đường thẳng: $Y = \beta_0 + \beta_1X + \epsilon$
+		\item Với số lượng biến $r = 2$, mô hình sẽ có dạng một mặt thẳng: $Y = \beta_0 + \beta_1X_2 + \beta_2X_2 + \epsilon$
+		\item Với số lượng biến $r > 2$, mô hình sẽ có dạng một siêu phẳng
+	\end{itemize}
+	Một mô hình tuyến tính dự đoán kết quả bằng cách tính tổng trọng số của các đặc trưng đầu vào (hay các biến độc lập). 
+	$$ \hat{y}=w_0+w_1x_1+w_2x_2+...+w_nx_n $$
+	\begin{itemize}
+		\item $\hat{y}$ là giá trị dự đoán.
+		\item $n$ là số lượng đặc trưng.
+		\item $x_i$ là giá trị đặc trưng thứ $i$.
+		\item $w_j$ là tham số thứ $j$ của mô hình.
+	\end{itemize}
+	$$\hat{y}=h_{\mathbf{w}}\left(\mathbf{x}\right)=\mathbf{w}^{T}\cdot\mathbf{x}$$
+	\begin{itemize}
+		\item $\mathbf{w}$ \textbf{vector trọng số} của mô hình (bao gốm cả $w_0$ và các trọng số đặc trưng $w_1,w_2,...w_n$).
+		\item $\mathbf{w}^T$ là chuyển vị của $\mathbf{w}$ (vector hàng thay vì vector cột).
+		\item $\mathbf{x}$ là \textbf{vector đầu vào} của các mẫu dữ liệu, bao gồm $x_0$ đến $x_n$, với $x_0$ luôn có giá trị là 1.
+		\item $\mathbf{w}^{T}\cdot\mathbf{x}$ là tích vô hướng của 2 vector $\mathbf{w}^T$ và $\mathbf{x}$.
+		\item $h_{\mathbf{w}}$ là hàm giả thiết, biểu diễn bằng các tham số $\mathbf{w}$.
+	\end{itemize}
+
+	\textbf{Các bước thực hiện} Hồi quy tuyến tính với thư viện \textbf{Sklearn}
+	\begin{itemize}
+		\item \textbf{Chuẩn bị dữ liệu}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/linear_reg/linear_reg_data_preparation.png}
+		\end{figure}
+		Tập dữ liệu huấn luyện, tập dữ liệu kiểm tra được đọc từ hai tập tin được cung cấp là train.csv và test.csv bằng Pandas, có dạng là data frame
+		
+		\item \textbf{Khởi tạo mô hình}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/linear_reg/linear_reg_init.png}
+		\end{figure}
+		Sklearn sử dụng phương pháp bình phương tối tiểu để ước lượng tham số cho mô hình. LinearRegression khớp dữ liệu với các hệ số $w = (w1,…, wp)$ để giảm thiểu tổng bình phương còn lại giữa các mục tiêu được quan sát trong tập dữ liệu và các mục tiêu được dự đoán bằng phép gần đúng tuyến tính.
+		Các tham số khi khởi tạo hàm LinearRegression
+		\begin{itemize}
+			\item fit\_intercept: 
+			\item normalize:
+			\item copy\_X:
+			\item n\_jobs: 
+			\item positive:
+		\end{itemize}
+		
+		\item Hệ số của các đặc trưng, hệ số chặn trong mô hình regression của dữ liệu, điểm số trên tập test
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/linear_reg/linear_reg_res.png}
+		\end{figure}
+		Giá trị $\text{Linear regression intercept} =  -12117.149214175606$ tương ứng hệ số $\beta_0$ của mô hình, nó có ý nghĩa là giá trị chặn của mô hình (dễ hiểu là số b của đường thẳng y=ax + b)
+		
+		Các giá trị Linear regression coefficient = [259.870936,48.14518497,337.05864381,427.52339986, 23622.50371905,-299.04523816] là các hệ số tương ứng với các đặc trưng của dữ liệu, lần lượt 
+		\begin{itemize}
+			\item age :  259.87093600053163
+			\item sex :  48.145184967129666
+			\item bmi :  337.05864381456627
+			\item children :  427.5233998551999
+			\item smoker :  23622.503719045195
+			\item region :  -299.04523815748104
+		\end{itemize}
+		
+		Giá trị $\text{Linear regression score on test data} =  0.7668905583460909 $, có ý nghĩa là hệ số xác định $R^2$ của dự đoán trên tập dữ liệu kiểm tra.
+		
+		Hệ số $R^2$ được định nghĩa bằng biểu thức $\left(1 - \frac{u}{v}\right)$. Trong đó:
+		\begin{itemize}
+			\item $u$ là tổng bình phương phần dư (Residual Sum of Squares - RSS):((y\_true - y\_pred) ** 2).sum()
+			\item $v$ là tổng độ lệch bình phương của toàn bộ đặc trưng (Total Sum of Squares - TSS): ((y\_true - y\_true.mean()) ** 2).sum()
+			\item Giá trị lớn nhất có thể là dương 1.0, $R^2$ có thể âm. Khi giá trị $R^2$ bằng 0, mô hình luôn dự đoán giá trị kỳ vọng của y
+		\end{itemize}
+		\item \textbf{Dự đoán}
+		\begin{itemize}
+			\item Trên tập huấn luyện
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/linear_reg/linear_reg_predict_train.png}
+			\end{figure}
+			Nhóm tính toán hai thông số để đánh giá mô hình trên tập huấn luyện
+			\begin{itemize}
+				\item RMSE (sai số bình phương trung bình gốc - Root Mean Squares Error): 6083.690704100102
+						
+				\item $R^2$: 0.7449087316606229
+			\end{itemize}
+			\item Trên tập kiểm tra
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/linear_reg/linear_reg_predict_test.png}
+			\end{figure}
+			Hiển thị bảng đối sánh kết quả thực và kết quả dự đoán, đánh giá thông qua các độ đo:
+			\begin{itemize}
+				\item Mean Absolute Error đạt 4252.9				
+				\item RMSE đạt 5930.779824530081
+				\item R2 score đạt 0.7668905583460909, gần về 1.0
+				\item Variance explained by model 76.6909\%
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{Trực quan hóa kết quả}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{images/linear_reg/linear_reg_plot.png}
+		\end{figure}	
+	\end{itemize}
+	\subsubsection{Nhận xét}
+	\begin{itemize}
+		\item Mô hình hoàn thành được mục tiêu đề ra là dự đoán được chi phí y tế cá nhân với giá trị $R^2$ tương đối cao 0.76, giải thích phương sai đat 76.7\%
+		\item Công thức Linear Regression: $\text{predict} = \text{intercept} + \text{slopeAge} * \text{dataAge} + \text{slopeSex} * \text{dataSex} + \text{slopeBMI} * \text{dataBMI} + ...$
+		\item Dựa vào bộ train data, Linear Regression tính toán với bình phương phương sai thấp nhất của dữ liệu so với dữ liệu cần dự đoán, từ đó tìm hệ số slope của mỗi dữ liệu đối với kết quả cần được dự đoán (coefficient). từ đó tìm ra được chi phí phù hợp khi từng loại dữ liệu được đặt ra.
+	\end{itemize}
+	\textbf{Ưu điểm - nhược điểm của Hồi quy tuyến tính}
+	\begin{itemize}
+		\item Ưu điểm
+		\begin{itemize}
+			\item \textbf{Mô hình đơn giản:} Mô hình hồi quy tuyến tính là phương trình đơn giản nhất sử dụng để biểu diễn mối quan hệ giữa nhiều biến dự báo và biến dự đoán.
+			\item \textbf{Hiệu quả về mặt tính toán:} Tốc độ lập mô hình của hồi quy tuyến tính nhanh vì nó không yêu cầu tính toán phức tạp và chạy dự đoán nhanh khi lượng dữ liệu lớn.
+			\item \textbf{Khả năng diễn giải của đầu ra:} Diễn giải được ảnh hưởng tương đối của một hoặc nhiều biến dự báo đến giá trị dự đoán khi các yếu tố dự báo độc lập với nhau. Có thể thể hiện sự thay đổi nào trong biến dự báo gây ra thay đổi nào trong biến dự đoán hoặc biến mục tiêu
+		\end{itemize}
+		\item Nhược điểm
+		\begin{itemize}
+			\item \textbf{Quá đơn giản:} Mô hình hồi quy tuyến tính quá đơn giản để nắm bắt được độ phức tạp của thế giới thực.
+			\item \textbf{Giả định tuyến tính:} Hồi quy tuyến tính đưa ra giả định mạnh mẽ rằng có các biến Dự đoán (độc lập) và Dự đoán (phụ thuộc) có quan hệ tuyến tính với nhau, điều này không hợp lý, vì trong thế giới thực, có rất nhiều mối quan hệ không có sự phự thuộc tuyến tính (phụ thuộc phi tuyến).
+			\item \textbf{Bị ảnh hưởng nghiêm trọng bởi các điểm ngoại lai:} Các điểm ngoại lệ có thể có ảnh hưởng lớn đến kết quả đầu ra.
+			\item \textbf{Tính độc lập của các biến:} Giả định rằng các biến dự báo không tương quan với nhau, điều này hiếm (hoặc không có) trong thực tế.
+			\item Hồi quy tuyến tính chỉ xem xét mối quan hệ giữa giá trị trung bình của biến dự đoán/ phụ thuộc và các biến dự đoán/ độc lập và giả định phương sai không đổi xung quanh giá trị trung bình.
+		\end{itemize}
+	\end{itemize}
 	\subsection{3. Hồi quy Ridge - Ridge Regression}
 	\subsubsection{Hồi quy Ridge cơ bản}
+	Giả sử rằng X và Y đã được căn giữa, do đó không cần một số hạng không đổi trong hồi quy:
+	\begin{itemize}
+		\item X là ma trận kích thước $n \times p$
+		\item Y là vector có n phần tử
+	\end{itemize}
+	Hoerl và Kennard (1970) nhận thấy rằng sự không ổn định tiềm ẩn trong ước lượng LS
+	$$\hat{\beta} = (X'X)^{-1}X'Y$$
+	có thể được cải thiện bằng cách thêm một giá trị không đổi nhỏ $\lambda$ vào các phần tử trên đường chéo của ma trận $X'X$ trước khi nghịch đảo của nó.
+	
+	Và kết quả là có được một ước lượng hồi quy Ridge như sau
+	$$\hat{\beta}_{\text{ridge}} = (X'X + \lambda I_p)^{-1}X'Y$$
+	Hồi quy Ridge đặt một dạng ràng buộc cụ thể lên các tham số $\beta$, $\hat{\beta}_{\text{ridge}}$ sẽ được chọn sao cho làm tối tiểu tổng bình phương giá trị bị phạt
+	$$\sum{i=1}^{n}\left(y_i - \sum_{j=1}^p(x_{ij}\beta_{j})\right)^2 + \lambda\sum_{j=1}^{p}\beta_j^2$$
+	tương đương với việc giảm thiểu 
+	$$\sum{i=1}^{n}\left(y_i - \sum_{j=1}^p(x_{ij}\beta_{j})\right)^2$$ phụ thuộc vào một số thực dương $c > 0$ mà $\sum_{j=1}^{p}\beta_j^2 < c$
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{images/ridge_reg/ridge_geometric.png}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.65\textwidth]{images/ridge_reg/ridge_geometric_2.png}
+	\end{figure}
 	\subsubsection{Sklearn Hồi quy Ridge}
+	Các bước thực hiện Hồi quy Ridge với thư viện Sklearn
+	\begin{itemize}
+		\item \textbf{Chuẩn bị dữ liệu}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_reg_data_preparation.png}
+		\end{figure}
+		Tập dữ liệu huấn luyện, tập dữ liệu kiểm tra được đọc từ hai tập tin được cung cấp là train.csv và test.csv bằng Pandas, có dạng là data frame
+		
+		\item \textbf{Chọn giá trị alpha tối ưu}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_reg_optimal_alpha.png}
+		\end{figure}
+		Do tập huấn luyện khá nhỏ, khoảng 1000 mẫu, nhóm quyết định chọn alpha tối ưu bằng cách thử nghiệm, tạo logspace bằng Numpy trong khoảng [-10, 10], khởi tạo 30 giá trị, fit lần lượt các giá trị alpha đó thông qua lớp RidgeCV Sklearn để chọn alpha tối ưu.
+		
+		Hình bên dưới mô tả quá trình duyệt để chọn alpha, đường màu đỏ là giá trị alpha, đường màu xanh là điểm số mô hình trên tập kiểm tra.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_choose_alpha.png}
+		\end{figure}
+		
+		\item \textbf{Khởi tạo và huấn luyện mô hình}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_reg_init_training.png}
+		\end{figure}
+		\textbf{Khởi tạo mô hình} Các tham số khi dùng khởi tạo mô hình Ridge
+		\begin{itemize}
+			\item alpha: hệ số alpha cho mô hình
+			\item fit\_intercept: Có khớp với chặn cho mô hình này hay không. Nếu được đặt thành false, sẽ không có đánh chặn nào được sử dụng trong quá trình tính toán
+			\item normalize: Tham số này bị bỏ qua khi fit\_intercept được đặt thành False. Nếu True, các hồi quy X sẽ được chuẩn hóa trước khi hồi quy bằng cách trừ giá trị trung bình và chia cho l2-norm
+			\item copy\_X: Nếu True thì X sẽ được copy, không thì X sẽ bị ghi đè
+			\item max\_iter: Số lần lặp tối đa cho bộ giải gradient liên hợp
+			\item tol: Làm tròn cho mô hình
+			\item solver: chọn bộ tính toán cho mô hình
+			\begin{itemize}
+				\item auto - Tự động chọn quy trình tính toán
+				\item svd - Singular Value Decomposition: sử dụng phép phân tích giá trị đơn lẻ của X để tính toán các hệ số Ridge.
+				\item cholesky - sử dụng hàm scipy.linalg.solve tiêu chuẩn để nhận được một lời giải tối ưu
+				\item sparse\_cg - sử dụng bộ giải gradient liên hợp như được tìm thấy trong scipy.sparse.linalg.cg. Là một thuật toán lặp lại, bộ giải này thích hợp hơn ‘cholesky’ đối với dữ liệu quy mô lớn
+				\item lsqr - sử dụng dedicated regularized least-squares trong scipy.sparse.linalg.lsqr. Nó là nhanh nhất và sử dụng một thủ tục lặp đi lặp lại.
+				\item sag - Stochastic Average Gradient descent: sử dụng Stochastic Average Gradient descent và 'saga' sử dụng phiên bản cải tiến, không bias có tên là SAGA. Cả hai phương pháp cũng sử dụng một thủ tục lặp lại và thường nhanh hơn các trình giải khác khi cả n\_samples và n\_features đều lớn
+			\end{itemize}
+			\item random\_state: Sử dụng khi dùng 'sag' hoặc 'saga' 
+		\end{itemize}
+		\item Dự đoán
+		\begin{itemize}
+			\item Trên tập huấn luyện
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_reg_predict_train.png}
+			\end{figure}
+		Hiệu quả trên tập huấn luyện được đánh giá bằng RMSE, R2 Score
+		\begin{itemize}
+			\item RMSE:  6083.693095759176
+			\item R2:  0.7449085310943889, chỉ số này khá gần 1.0
+		\end{itemize}
+			\item Trên tập kiểm tra
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_reg_predict_test.png}
+			\end{figure}
+			Hiển thị bảng đối sánh kết quả thực và kết quả dự đoán, đánh giá thông qua các độ đo:
+			\begin{itemize}
+				\item Mean Absolute Error is 4254.0
+				\item RMSE is 5931.059170479339
+				\item R2 score is 0.7668685984306147
+				\item Variance explained by model 76.68871\%
+			\end{itemize}
+		\end{itemize}
+		\item \textbf{Trực quan kết quả dự đoán}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.85\textwidth]{images/ridge_reg/ridge_reg_plot.png}
+		\end{figure}
+	\end{itemize}
+	\subsubsection{Nhận xét}
+	\begin{itemize}
+		\item Tương tự với Linear Regression, Ridge cũng tìm hệ dữ liệu với phương sai thấp nhất.
+		
+		\item Ridge tìm ra hệ số bias lớn hơn so với Linear để giảm hoặc tăng tính ảnh hưởng của từng loại dữ liệu lên kết quả được predict.
+		\item So sánh Ridge và Linear Regression
+		\begin{itemize}
+			\item $\text{Linear tính toán predict} = \text{tổng bình phương phương sai thấp nhất với slope} * \text{data}$
+			\item $\text{Ridge tính toán predict} = \text{tổng bình phương phương sai thấp nhất} + \lambda \times \text{slope}^2.$
+		\end{itemize}
+	\end{itemize}
+	\textbf{Ưu điểm và nhược điểm của mô hình Hồi quy Ridge - Ridge Regression}
+	\begin{itemize}
+		\item Ưu điểm:
+		\item Nhược điểm:
+	\end{itemize}
 	\subsection{4. Hồi quy Lasso - Lasso Regression}
 	\subsubsection{Hồi quy Lasso cơ bản}
 	\subsubsection{Sklearn Hồi quy Lasso}
+	Các bước thực hiện Hồi quy Lasso với thư viện Sklearn
+	\begin{itemize}
+		\item Chuẩn bị dữ liệu
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_data_preparation.png}
+		\end{figure}
+		Tập dữ liệu huấn luyện, tập dữ liệu kiểm tra được đọc từ hai tập tin được cung cấp là train.csv và test.csv bằng Pandas, có dạng là data frame
+		\item Chọn alpha
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_reg_choose_alpha.png}
+		\end{figure}
+		Do tập huấn luyện khá nhỏ, khoảng 1000 mẫu, nhóm quyết định chọn alpha tối ưu bằng cách thử nghiệm, tạo logspace bằng Numpy trong khoảng [-10, 10], khởi tạo 30 giá trị, fit lần lượt các giá trị alpha đó thông qua lớp LassoCV Sklearn để chọn alpha tối ưu.
+	
+		Hình bên dưới mô tả quá trình duyệt để chọn alpha, đường màu đỏ là giá trị alpha, đường màu xanh là điểm số mô hình trên tập kiểm tra.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_choose_alpha.png}
+		\end{figure}
+		\item Khởi tạo và fit mô hình
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_init_fit.png}
+		\end{figure}
+		\textbf{Khởi tạo mô hình} Các tham số khi dùng khởi tạo mô hình Lasso
+		\begin{itemize}
+			\item alpha
+			\item fit\_intercept: Có khớp với chặn cho mô hình này hay không. Nếu được đặt thành false, sẽ không có đánh chặn nào được sử dụng trong quá trình tính toán
+			\item normalize: Tham số này bị bỏ qua khi fit\_intercept được đặt thành False. Nếu True, các hồi quy X sẽ được chuẩn hóa trước khi hồi quy bằng cách trừ giá trị trung bình và chia cho l2-norm
+			\item precompute
+			\item copy\_X: Nếu True thì X sẽ được copy, không thì X sẽ bị ghi đè
+			\item max\_iter: Số lần lặp tối đa cho bộ giải gradient liên hợp
+			\item tol: Làm tròn cho mô hình
+			\item warm\_start
+			\item positive
+			\item random\_state: Sử dụng khi selection == 'random'
+			\item selection
+		\end{itemize}
+		\item Hệ số của các đặc trưng
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_features_slope.png}
+		\end{figure}
+		\item Dự đoán
+		\begin{itemize}
+			\item Trên tập huấn luyện
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_train_predict.png}
+			\end{figure}
+		Các đánh giá thực hiện kiểm tra mô hình trên tập huấn luyện, xem xét hai độ đo
+		\begin{itemize}
+			\item RMSE:  6091.013493085486, chỉ số này tương đối nhỏ
+			\item R2:  0.7442942678946298, chỉ số này khá gần 1.0
+		\end{itemize}
+			\item Trên tập kiểm tra
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/lasso_reg/lasso_predict_test_data.png}
+			\end{figure}
+		Hiển thị bảng đối sánh kết quả thực và kết quả dự đoán, đánh giá thông qua các độ đo:
+		\begin{itemize}
+			\item Mean Absolute Error is 4250.1
+			\item RMSE is 5947.352352622871
+			\item R2 score is 0.7655859709489702
+			\item Variance explained by model 76.56042\%
+		\end{itemize}
+		\end{itemize}
+		\item Trực quan hóa
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/lasso_reg/lass-reg_plot.png}
+		\end{figure}
+	\end{itemize}
+	\textbf{Ưu điểm và nhược điểm của mô hình Hồi quy Lasso - Lasso Regression}
+	\begin{itemize}
+		\item Ưu điểm:
+		\item Nhược điểm:
+	\end{itemize}
+	\subsubsection{Nhận xét}
+	\begin{itemize}
+		\item  tương tự với Ridge Regression, Lasso cũng tìm hệ dữ liệu với phương sai thấp nhất.
+		\begin{itemize}
+			\item $\text{Ridge tính toán predict} = \text{tổng bình phương phương sai thấp nhất với sai số là lambda} * \text{slope}^2$
+			\item $\text{Lasso tính toán predict} = \text{tổng bình phương phương sai thấp nhất} + \lambda * \text{|slope|}$
+		\end{itemize}
+	\end{itemize}
 	\subsection{5. Hồi quy rừng ngẫu nhiên - Random Forest Regressor}
 	\subsubsection{Hồi quy rừng ngẫu nhiên cơ bản}
+	\qquad Rừng ngẫu nhiên là một loại thuật toán Học Máy có giám sát dựa trên học tập theo nhóm (ensemble learning). Học theo nhóm (ensemble learning) là một kiểu học mà kết hợp nhiều loại thuật toán khác nhau hoặc cùng một thuật toán nhiều lần để tạo thành một mô hình dự đoán mạnh mẽ hơn. Thuật toán rừng ngẫu nhiên kết hợp nhiều thuật toán cùng loại, tức là nhiều cây quyết định, tạo ra một rừng cây, do đó có tên là "Rừng ngẫu nhiên". Thuật toán rừng ngẫu nhiên có thể được sử dụng cho cả nhiệm vụ hồi quy (regression) và phân loại (classification).
+	
+	Tóm tắt các bước của thuật toán Rừng ngẫu nhiên (Random Forest Algorithm)
+	\begin{itemize}
+		\item Chọn N bộ dữ liệu ngẫu nhiên từ tập dữ liệu.
+		
+		\item Xây dựng cây quyết định dựa trên N bộ dữ liệu này.
+		
+		\item Chọn số lượng cây người dùng muốn trong thuật toán của mình và lặp lại các bước 1 và 2.
+		
+		\item Trong trường hợp có vấn đề hồi quy, đối với một bản ghi mới, mỗi cây trong rừng dự đoán một giá trị cho Y (đầu ra). Giá trị cuối cùng có thể được tính bằng cách lấy giá trị trung bình của tất cả các giá trị được dự đoán bởi tất cả các cây trong rừng. Hoặc, trong trường hợp có vấn đề về phân loại, mỗi cây trong rừng dự đoán loại mà kỷ lục mới thuộc về. Cuối cùng, kỷ lục mới được gán cho hạng mục giành được đa số phiếu bầu. 
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.75\textwidth]{images/random_forest_reg/model_overview.png}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_predict.png}
+	\end{figure}
+	\textbf{Ưu điểm - nhược điểm của thuật toán Rừng ngẫu nhiên}
+	\begin{itemize}
+		\item Ưu điểm:
+		\begin{itemize}
+			\item Thuật toán rừng ngẫu nhiên không sai lệch, vì có nhiều cây và mỗi cây được huấn luyện trên một tập dữ liệu con. Về cơ bản, thuật toán rừng ngẫu nhiên dựa vào sức mạnh của "đám đông"; do đó độ chệch tổng thể của thuật toán được giảm xuống.
+			
+			\item Thuật toán này rất ổn định. Ngay cả khi một điểm dữ liệu mới được đưa vào tập dữ liệu, thuật toán tổng thể không bị ảnh hưởng nhiều vì dữ liệu mới có thể ảnh hưởng đến một cây, nhưng rất khó để nó tác động đến tất cả các cây.
+			
+			\item Thuật toán rừng ngẫu nhiên hoạt động tốt khi dữ liệu có cả đặc trưng kiểu loại và kiểu số.
+			
+			\item Thuật toán rừng ngẫu nhiên cũng hoạt động tốt khi dữ liệu bị thiếu giá trị hoặc nó chưa được chia tỷ lệ tốt.
+		\end{itemize}
+		\item Nhược điểm:
+		\begin{itemize}
+			\item Độ phức tạp thuật toán, yêu cầu nhiều tài nguyên tính toán hơn, do số lượng lớn các cây quyết định được kết hợp với nhau.
+			\item Do độ phức tạp thuật toán khá lớn nên thời gian huấn luyện mô hình cũng mất nhiều thời gian
+		\end{itemize}
+	\end{itemize}
 	\subsubsection{Sklearn Hồi quy rừng ngẫu nhiên}
+	Các bước thực hiện Hồi quy Lasso với thư viện Sklearn
+	\begin{itemize}
+		\item Chuẩn bị dữ liệu
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_data_preparation.png}
+		\end{figure}
+		Tập dữ liệu huấn luyện, tập dữ liệu kiểm tra được đọc từ hai tập tin được cung cấp là train.csv và test.csv bằng Pandas, có dạng là data frame
+		\item Khởi tạo mô hình và khớp dữ liệu trên tập huấn luyện
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_init_fit.png}
+		\end{figure}
+		\item Điểm số đóng góp của các đặc trưng
+		Thể hiện mức độ quan trọng của đặc trưng của bộ dữ liệu. Theo những nhận định trong giai đoạn phân tích và trực quan hóa dữ liệu, đặc trưng tình trạng hút thuốc được nhóm nhận định là đặc trưng có ảnh hưởng khá lớn đối với chi phí cá nhân, và ở đây một lần nữa được kiểm chứng
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_important_features.png}
+		\end{figure}
+		Nếu như ở trên, những thuật toán máy học khác cho thấy hệ số của đặc trưng này tương đối lớn khá nhiều so với các đặc trưng còn lại. Thông qua tính toán important features rate, ta dễ dàng trực quan hóa và thấy rõ ràng mức độ quan trọng của từng đặc trưng qua biểu đồ dưới đây
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_features_important_rate.png}
+		\end{figure}
+		\item Dự đoán
+		\begin{itemize}
+			\item Tập huấn luyện
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_train_predict.png}
+			\end{figure}
+		Các đánh giá thực hiện kiểm tra mô hình trên tập huấn luyện, xem xét hai độ đo
+		\begin{itemize}
+			\item RMSE:  1870.7046036122138
+			\item R2:  0.9758803072907702
+		\end{itemize}
+			\item Tập test
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_predict_test_evaluation.png}
+			\end{figure}
+		Hiển thị bảng đối sánh kết quả thực và kết quả dự đoán, đánh giá thông qua các độ đo:
+		\begin{itemize}
+			\item Mean Absolute Error is 2601.5
+			\item RMSE is 4798.365892312577
+			\item R2 score is 0.8474110853586974
+			\item Variance explained by model 84.80841\%
+		\end{itemize}
+		\end{itemize}
+		\item Trực quan 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/random_forest_reg/random_forest_plot.png}
+		\end{figure}
+	\end{itemize}
+	\subsubsection{Nhận xét}
+	\begin{itemize}
+		\item các bước thực hiện RFR
+		\begin{itemize}
+			\item Tạo ra bộ dữ liệu bootstrapped để 1 phần dữ liệu train. Tạo bộ cây quyết định bằng bộ dữ liệu bootstrapped tỉ lệ 1-1.
+			\item Bộ dữ liệu trên được xem là random forest.
+			\item Phần dữ liệu còn lại của bộ train được sử dụng để tính độ chính xác của rừng cây. Bằng cách cho những bộ dữ liệu đi qua từng bootstrap ( rừng bootstrap) ta có thể tính được tỉ lệ đúng sai của rừng cây đó.
+			\item Sau khi tính được độ đúng sai của rừng. chúng ta quay lại bước 1 và tạo ra những rừng cây mới với cấu trúc khác.
+			\item So sánh độ đúng sai của những rừng cây được tạo ra và chọn rừng cây phù hợp nhất.
+		\end{itemize}
+		\item Thuật toán cho kết quả khả quan trên tập huấn luyện và cả tập kiểm tra vối chỉ số $R^2$ cao, giải thích phương sai đạt 84.8\%, có RMSE tương đối thấp trên cả tập huấn luyện và tập kiểm tra		
+	\end{itemize}
 	\subsection{6. Hồi quy đa thức - Polynomial Regression}
 	\subsubsection{Hồi quy đa thức cơ bản}
+	\qquad Một mô hình được xem là tuyến tính nếu nó tuyến tính với những tham số
+	\begin{align*}
+		Y = \beta_0 + \beta_1X + \beta_2X^2 + \epsilon
+	\end{align*}
+	và 
+	\begin{align*}
+	Y = \beta_0 + \beta_1X_1 + \beta_2X_2 +  \beta_12X_1X_2 + \beta_{11}X_1^2 + \beta_{22}X_2^2 + \epsilon
+	\end{align*}
+	lần lượt là đa thức bậc một và bậc hai cũng được xem là môt hình tuyến tính (linear model)
+	
 	\subsubsection{Sklearn Hồi quy đa thức}
+	Các bước thực hiện Hồi quy đa thức với thư viện Sklearn
+	\begin{itemize}
+		\item Chuẩn bị dữ liệu
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_data_preparation.png}
+		\end{figure}
+		\item Chọn bậc đa thức tối ưu
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_reg_choose_degree.png}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_choose_degree.png}
+		\end{figure}
+		\item Khởi tạo mô hình và huấn luyện
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_init_fit.png}
+		\end{figure}
+		\item Dự đoán
+		\begin{itemize}
+			\item Trên tập huấn luyện
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_predict_train_set.png}
+			\end{figure}
+			\item Trên tập test
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_predict_test_evaluation.png}
+			\end{figure}
+		\end{itemize}
+		\item Trực quan kết quả
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_reg_plot.png}
+		\end{figure}
+	\end{itemize}
+	\subsubsection{Nhận xét}
+	\begin{itemize}
+		\item Polynomial Regression tiến bộ hơn so với Linear regression.
+		\item Polynomial Regression thay đổi giá trị phụ thuộc theo từng data được train và tiến bộ dần với bộ dữ liệu lớn.
+		\item Polynomial nhạy cảm với các outlier, tuy nhiên với bộ dữ liệu y tế trên, Polynomial không bị ảnh hưởng nhiều do được phát triển đủ tốt để thực hiện dự đoán với sai số thấp.
+		\item Công thức chung Polynomial $\text{Predict} = \text{intercept} + \theta_1 \times (\text{slopeSex} * \text{dataSex} + \text{slopeBMI} \times \text{dataBMI} + ... ) + \theta_2 \times (\text{slopeSex} \times \text{dataSex} + \text{slopeBMI} \times \text{dataBMI} + ... ) + \theta_3 * (\text{slopeSex} \times \text{dataSex} + \text{slopeBMI} \times \text{dataBMI} + ... )$
+	\end{itemize}
 	\section{4. Các kết quả và nhận xét}
 	
 	\nocite{*}
