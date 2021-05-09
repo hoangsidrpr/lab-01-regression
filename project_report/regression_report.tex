@@ -426,10 +426,15 @@
 	\end{figure}
 	\textbf{Nhận xét:} 
 	\begin{itemize}
-		\item
+		\item Ảnh hưởng của đặc trưng tình trạng hút thuốc khá rõ rệt giữa các gia đình trên mọi trường hợp số trẻ em/ người phụ thuộc
+		\item Quan hệ giữa số trẻ em và chi phí y tế không có nhiều ý nghĩa, các đường đự đoán nằm ở giá trị kỳ vọng của chi phí y tế
 	\end{itemize}
 
 	\subsection{11. Kết luận - Suy diễn}
+	\begin{itemize}
+		\item Chi phí y tế phụ thuộc vào nhiều yếu tố, trong đó tình trạng hút thuốc, chỉ số bmi, tuổi là những đặc trưng ảnh hưởng đến giá trị này nhiều nhất.
+		\item Có thể dự đoán được giá trị chi phí y tế cá nhân thông qua những đặc trưng này
+	\end{itemize}
 	
 	\section{3. Cài đặt thuật toán Máy học}
 	
@@ -811,7 +816,20 @@
 	\textbf{Ưu điểm và nhược điểm của mô hình Hồi quy Lasso - Lasso Regression}
 	\begin{itemize}
 		\item Ưu điểm:
+		\begin{itemize}
+			\item Có thể ước lượng hệ số hồi quy 0
+			\item Có thể thực hiện lựa chọn biến nhanh hơn nhiều so với tập con cho số lượng các dữ kiện dự đoán (thuật toán LARS)
+			\item Khớp tốt: không bị overfit
+			\item Thích hợp khi làm xử lý dữ liệu có số chiều cao
+		\end{itemize}
 		\item Nhược điểm:
+		\begin{itemize}
+			\item Suy diễn thống kê: khó thực hiện kiểm tra giả thuyết hơn, độ tin cậy
+			khoảng thời gian, v.v.
+			\item Đa cộng tuyến: sẽ chọn các yếu tố dự đoán tương quan 'một cách ngẫu nhiên'.
+			\item Khó khăn khi tính toán số học: lời giải dạng đóng sẽ không khả thi
+			\item Biased: trừ khi alpha = 0
+		\end{itemize}
 	\end{itemize}
 	\subsubsection{Nhận xét}
 	\begin{itemize}
@@ -941,6 +959,8 @@
 	Y = \beta_0 + \beta_1X_1 + \beta_2X_2 +  \beta_12X_1X_2 + \beta_{11}X_1^2 + \beta_{22}X_2^2 + \epsilon
 	\end{align*}
 	lần lượt là đa thức bậc một và bậc hai cũng được xem là môt hình tuyến tính (linear model)
+	Một mô hình hồi quy đa thức một biến có dạng như sau:
+	$$Y = \beta_0 + \beta_1X + \beta_2X^2 + ... + \beta_hX^h + \epsilon$$
 	
 	\subsubsection{Sklearn Hồi quy đa thức}
 	Các bước thực hiện Hồi quy đa thức với thư viện Sklearn
@@ -950,12 +970,16 @@
 			\centering
 			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_data_preparation.png}
 		\end{figure}
+		Tập dữ liệu huấn luyện, tập dữ liệu kiểm tra được đọc từ hai tập tin được cung cấp là train.csv và test.csv bằng Pandas, có dạng là data frame
 		\item Chọn bậc đa thức tối ưu
+		Do tập huấn luyện khá nhỏ, khoảng 1000 mẫu, nhóm quyết định chọn alpha tối ưu bằng cách thử nghiệm, tạo mảng các bậc đa thức [0, 10], fit lần lượt các giá trị degree đó để tìm giá trị bậc làm cho mô hình có độ lỗi RMSE thấp nhất
+		
+		Hình bên dưới mô tả quá trình duyệt để chọn alpha, đường màu đỏ là giá trị alpha, đường màu xanh là điểm số mô hình trên tập kiểm tra. Ta tìm được bậc nhỏ nhất (cực tiểu toàn cục) là 2
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_reg_choose_degree.png}
 		\end{figure}
-		\begin{figure}[H]
+		\begin{figure}[H]2
 			\centering
 			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_choose_degree.png}
 		\end{figure}
@@ -971,11 +995,23 @@
 				\centering
 				\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_predict_train_set.png}
 			\end{figure}
+			Các đánh giá thực hiện kiểm tra mô hình trên tập huấn luyện, xem xét hai độ đo
+			\begin{itemize}
+				\item RMSE:  4777.420632842026
+				\item R2:  0.8426929081771336
+			\end{itemize}
 			\item Trên tập test
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_predict_test_evaluation.png}
 			\end{figure}
+			Hiển thị bảng đối sánh kết quả thực và kết quả dự đoán, đánh giá thông qua các độ đo:
+			\begin{itemize}
+				\item Mean Absolute Error is  2776.0
+				\item RMSE is 4655.826842775082
+				\item R2 score is 0.8563419718855153
+				\item Variance explained by model is 85.63976\%
+			\end{itemize}
 		\end{itemize}
 		\item Trực quan kết quả
 		\begin{figure}[H]
@@ -990,10 +1026,41 @@
 		\item Polynomial nhạy cảm với các outlier, tuy nhiên với bộ dữ liệu y tế trên, Polynomial không bị ảnh hưởng nhiều do được phát triển đủ tốt để thực hiện dự đoán với sai số thấp.
 		\item Công thức chung Polynomial $\text{Predict} = \text{intercept} + \theta_1 \times (\text{slopeSex} * \text{dataSex} + \text{slopeBMI} \times \text{dataBMI} + ... ) + \theta_2 \times (\text{slopeSex} \times \text{dataSex} + \text{slopeBMI} \times \text{dataBMI} + ... ) + \theta_3 * (\text{slopeSex} \times \text{dataSex} + \text{slopeBMI} \times \text{dataBMI} + ... )$
 	\end{itemize}
+	\textbf{Ưu điểm và nhược điểm của mô hình Hồi quy Đa thức - Polynomial Regression}
+	\begin{itemize}
+		\item Ưu điểm:
+		\begin{itemize}
+			\item Không phụ thuộc vào kích thước dữ liệu
+			\item Hoạt động tốt với những bài toán phi tuyến
+			\item Đa thức cung cấp giá trị gần đúng nhất của mối quan hệ giữa biến phụ thuộc và biến độc lập.
+			\item Khớp với nhiều hàm khác nhau
+			\item Khớp với nhiều độ cong khác nhau
+		\end{itemize}
+		\item Nhược điểm:
+		\begin{itemize}
+			\item Khó khăn trong việc chọn bậc đa thức phù hợp
+			\item Mô hình cực kỳ nhạy cảm với nhiễu, các điểm giá trị ngoại lai
+		\end{itemize}
+	\end{itemize}
 	\section{4. Các kết quả và nhận xét}
-	
-	\nocite{*}
-	\bibliography{references}\newpage\cleardoublepage
-	\bibliographystyle{plain}
+	\begin{itemize}
+		\item Những nhận định về mức độ quan trọng ban đầu là đúng
+		\item Thuật toán sẽ dự đoán tốt hơn ở những bộ dữ liệu có chi phí y tế thấp và sai lệch ở những chi phí cao.
+		\item Test data được dự đoán với kết quả tốt hơn so với train data.
+		\item Những kết quả dự đoán cao sẽ sai lệch khoảng 10000, không dự đoán đúng tuy nhiên độ sai lệch cũng không lớn.
+		\item Các thuật toán Linear Regression, Lasso Regression, Ridge Regression tuy có hiệu quả không cao nhưng thời gian huấn luyện khá nhanh, bớt chi phí tính toán. Các thuật toán Random Forest Regressors, Polynomial Regression cho kết quả tương đối cao trên tập huấn luyện, tập kiểm tra cho thấy hiệu quả vượt trội hơn nhiều. Chúng ta có thể chọn một trong hai mô hình để dự đoán về chi phí y tế cá nhân.
+	\end{itemize}
+	\section{5. Tài liệu tham khảo}
+	\begin{enumerate}
+		\item \href{https://machinelearningcoban.com/2016/12/28/linearregression/}{Machine Learning cơ bản - Bài 3: Linear Regression}
+		\item \href{https://stackabuse.com/random-forest-algorithm-with-python-and-scikit-learn/}{Random Forest Algorithm with Python and Scikit-Learn}
+		\item \href{https://levelup.gitconnected.com/random-forest-regression-209c0f354c84}{Random Forest Regression}
+		\item \href{https://scikit-learn.org/stable/modules/linear_model.html#}{Sklearn document - Linear Model}
+		\item \href{https://towardsdatascience.com/introduction-to-linear-regression-and-polynomial-regression-f8adc96f31cb}{Introduction to Linear Regression and Polynomial Regression}
+		\item \href{https://online.stat.psu.edu/stat857/node/155/}{Applied Data Mining and Statistical Learning - STAT 897D - PennState Eberly College of Science - Lesson 5: Regression Shrinkage Methods - Ridge Regression}
+		\item \href{https://dominhhai.github.io/vi/2017/12/ml-linear-regression/}{[ML] Hồi quy tuyến tính (Linear Regression) - Đỗ Minh Hải Blob}
+		\item \href{https://arxiv.org/pdf/1509.09169;Lecture}{arXiv: Lecture notes on ridge regression}
+		\item \href{https://online.stat.psu.edu/stat462/node/158/}{Applied Regression Analysis - STAT 897D - PennState Eberly College of Science - Lesson 7: Transformations \& Interactions - 7.7 - Polynomial Regression}
+	\end{enumerate}
 	
 \end{document}
