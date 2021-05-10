@@ -165,14 +165,14 @@
 	\end{table}	
 	\subsection{Bảng danh sách các thuật toán Hồi quy}
 	\begin{table}[H]
-		\begin{tabular}{ | p{3cm} | p{5cm} | p{3cm} | p{3cm} |} \hline	
-			Thuật toán máy học & Cách cài đặt & Thư viện để đối chiếu (Nếu có) & Đánh giá hoàn thành\T\B\\\hline
-			Multi Linear Regression & & & 100\%  \T\B\\\hline
-			Logistic Regression & & & 100\%  \T\B\\\hline
-			Ridge Regression & & & 100\%  \T\B\\\hline
-			Lasso Regression & & & 100\%  \T\B\\\hline
-			Random Forest Regressor & & & 100\%  \T\B\\\hline
-			Polynomial Regression & & & 100\%  \T\B\\\hline
+		\begin{tabular}{ | p{5.5cm} | p{5cm} | p{4cm} |} \hline	
+			Thuật toán máy học & Cách cài đặt & Đánh giá hoàn thành\T\B\\\hline
+			Multi Linear Regression & Dùng thư viện Sklearn & 100\%  \T\B\\\hline
+			Logistic Regression & Dùng thư viện Sklearn & 100\%  \T\B\\\hline
+			Ridge Regression & Dùng thư viện Sklearn & 100\%  \T\B\\\hline
+			Lasso Regression & Dùng thư viện Sklearn & 100\%  \T\B\\\hline
+			Random Forest Regressor &Dùng thư viện Sklearn & 100\%  \T\B\\\hline
+			Polynomial Regression & Dùng thư viện Sklearn& 100\%  \T\B\\\hline
 		\end{tabular}
 	\end{table}		
 	\section{Nội dung báo cáo}
@@ -737,6 +737,24 @@
 	\end{itemize}
 	\subsection{4. Hồi quy Lasso - Lasso Regression}
 	\subsubsection{Hồi quy Lasso cơ bản}
+	\qquad Hồi quy Lasso là một loại hồi quy tuyến tính (linear regression) sử dụng tính năng co rút. Co rút là nơi các giá trị dữ liệu được thu hẹp về một điểm trung tâm, như giá trị trung bình. Quy trình lasso khuyến khích các mô hình đơn giản, thưa thớt (tức là các mô hình có ít tham số hơn). Loại hồi quy cụ thể này rất phù hợp cho các mô hình hiển thị mức độ tương đồng cao hoặc khi bạn muốn tự động hóa các phần nhất định của việc lựa chọn mô hình, như lựa chọn biến / loại bỏ tham số.
+	
+	Từ viết tắt “LASSO” là viết tắt của Least Absolute Shrinkage and Selection Operator
+	
+	\textbf{Hồi quy Lasso} thực hiện  \textbf{L1 regularization}, làm tăng thêm một khoản giá trị phạt bằng giá trị tuyệt đối của độ lớn của các hệ số. Loại chính quy hóa này có thể dẫn đến các mô hình thưa thớt với ít hệ số; Một số hệ số có thể trở thành 0 và bị loại khỏi mô hình. Các hình phạt lớn hơn dẫn đến các giá trị hệ số gần bằng 0, đây là lý tưởng để sản xuất các mô hình đơn giản hơn. Mặt khác, \textbf{L2 regularization} (hồi quy Ridge) không dẫn đến việc loại bỏ các hệ số hoặc mô hình thưa thớt. Điều này làm cho Lasso dễ giải thích hơn nhiều so với Ridge.
+	
+	Các giải pháp của Lasso là các bài toán lập trình bậc hai, mục tiêu của thuật toán là tối tiểu 
+	$$\sum_{i=1}^{n}\left(y_i - \sum_{j}x_{ij}\beta_j\right)^2 + \lambda\sum_{j=1}^p|\beta_j|$$
+	tương đương với việc tối tiểu tổng bình phương với ràng buộc $\sum_{j=1}^p|\beta_j| < c, c \in \mathbb{R}$
+	
+	Giá trị $\lambda$ ảnh hưởng đến L1
+	\begin{itemize}
+		\item Khi $\lambda = 0$, không có tham số nào được ước lượng
+		\item Khi $\lambda$ tăng, càng nhiều hệ số tiến về 0 và bị loại bỏ
+		\item Khi $\lambda$ tăng, bias tăng
+		\item Khi $\lambda$ giảm, variance tăng
+	\end{itemize}
+	
 	\subsubsection{Sklearn Hồi quy Lasso}
 	Các bước thực hiện Hồi quy Lasso với thư viện Sklearn
 	\begin{itemize}
@@ -988,6 +1006,14 @@
 			\centering
 			\includegraphics[width=0.75\textwidth]{images/polynomial_reg/poly_init_fit.png}
 		\end{figure}
+	Các tham số khi khởi tạo PolynomialFeatures như sau:
+	\begin{itemize}
+		\item degree: Bậc đa thức
+		\item interaction\_only: Nếu đúng, chỉ các đặc trưng tương tác được tạo ra: các đặc trưng là sản phẩm của các đặc trưng đầu vào khác biệt ở mức độ tối đa 
+		\item include\_bias: Nếu True (mặc định), thì hãy bao gồm cột bias, đặc trưng trong đó tất cả các lũy thừa của đa thức đều bằng 0 (tức là một cột của các lũy thừa - hoạt động như một thuật ngữ chặn trong mô hình tuyến tính).
+		\item order: Thứ tự của mảng đầu ra trong trường hợp dày đặc. Thứ tự ‘F’ nhanh hơn để tính toán, nhưng có thể làm chậm các trình ước tính tiếp theo.
+	Các tham số khởi tạo Linear Regression hoàn toàn giống với phần Hồi quy tuyến tính đã nói
+	\end{itemize}
 		\item Dự đoán
 		\begin{itemize}
 			\item Trên tập huấn luyện
