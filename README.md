@@ -1,3 +1,20 @@
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Forks][forks-shield]][forks-url]
+[![Apache License][license-shield]][license-url]
+
+Programming language: ![](https://img.shields.io/github/languages/count/nhutnamhcmus/lab-01-regression?style=flat-square) with ![](https://img.shields.io/github/languages/top/nhutnamhcmus/lab-01-regression?style=flat-square)
+
+Open project with Google Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nhutnamhcmus/lab-01-regression/blob/main/source_code/introduction_to_machine_learning_project_01_regression.ipynb)
+
 # ĐỒ ÁN THỰC HÀNH 01 - HỒI QUY
 
 Lớp: Nhập môn Học Máy - CQ2018/21
@@ -130,3 +147,16 @@ nghiệm cho những đồ án, những báo cáo kế tiếp.
 
 Một lần nữa, cũng không cảm ơn đến gia đình, những người bạn, đã luôn đồng hành giúp đỡ lẫn nhau, để chúng mình có thể hoàn thành đồ án một cách hoàn chỉnh nhất có thể!
 
+<!-- MARKDOWN LINKS & IMAGES -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/nhutnamhcmus/lab-01-regression?style=flat-square
+[contributors-url]: https://github.com/nhutnamhcmus/lab-01-regression/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/nhutnamhcmus/lab-01-regression?style=flat-square
+[forks-url]: https://github.com/nhutnamhcmus/lab-01-regression/network/members
+
+[stars-shield]: https://img.shields.io/github/stars/nhutnamhcmus/lab-01-regression?style=flat-square
+[stars-url]: https://github.com/nhutnamhcmus/lab-01-regression/stargazers
+
+[license-shield]: https://img.shields.io/github/license/nhutnamhcmus/lab-01-regression?style=flat-square
+[license-url]: https://github.com/nhutnamhcmus/lab-01-regression/blob/master/LICENSE
